@@ -29,7 +29,7 @@ public class CurrencyServiceJpa implements CurrencyService {
                 .findBySourceCurrencyAndTargetCurrency(sourceCurrency, targetCurrency)
                 .orElseThrow(() -> new EntityNotFoundException("Currency not found for " + sourceCurrency + " to " + targetCurrency));
 
-        String environment = "Currency API running in port " + serverPort;
+        String environment = "Currency API running in Port: " + serverPort;
 
         return new CurrencyResponse(
                 currency.getSourceCurrency(),
