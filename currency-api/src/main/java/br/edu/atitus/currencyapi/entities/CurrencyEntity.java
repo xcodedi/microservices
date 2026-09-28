@@ -1,10 +1,6 @@
 package br.edu.atitus.currencyapi.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_currency")
@@ -13,10 +9,19 @@ public class CurrencyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String sourceCurrency;
     private String targetCurrency;
     private Double conversionRate;
+
+    public CurrencyEntity() {
+    }
+
+    public CurrencyEntity(Long id, String sourceCurrency, String targetCurrency, Double conversionRate) {
+        this.id = id;
+        this.sourceCurrency = sourceCurrency;
+        this.targetCurrency = targetCurrency;
+        this.conversionRate = conversionRate;
+    }
 
     public Long getId() {
         return id;

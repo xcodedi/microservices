@@ -3,15 +3,16 @@ package br.edu.atitus.currencyapi.services;
 import br.edu.atitus.currencyapi.dtos.CurrencyResponse;
 import br.edu.atitus.currencyapi.entities.CurrencyEntity;
 import br.edu.atitus.currencyapi.repositories.CurrencyRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("currencyServiceJpa")
 public class CurrencyServiceJpa implements CurrencyService {
 
     private final CurrencyRepository currencyRepository;
 
-    @Value("${server.port}")
+    @Value("${server.port:8100}")
     private String serverPort;
 
     public CurrencyServiceJpa(CurrencyRepository currencyRepository) {
@@ -26,9 +27,9 @@ public class CurrencyServiceJpa implements CurrencyService {
 
         CurrencyEntity currency = currencyRepository
                 .findBySourceCurrencyAndTargetCurrency(sourceCurrency, targetCurrency)
-                .orElseThrow(() -> new Exception("Currency not found for " + sourceCurrency + " to " + targetCurrency));
+                .orElseThrow(() -> new EntityNotFoundException("Currency not found for " + sourceCurrency + " to " + targetCurrency));
 
-        String environment = "Currency API running in Port: " + serverPort;
+        String environment = "Currency API running in port " + serverPort;
 
         return new CurrencyResponse(
                 currency.getSourceCurrency(),
