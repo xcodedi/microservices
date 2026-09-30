@@ -1,8 +1,9 @@
-package br.edu.atitus.currencyapi.services;
+package br.edu.atitus.currencyapi.servicesimpl;
 
 import br.edu.atitus.currencyapi.dtos.CurrencyResponse;
 import br.edu.atitus.currencyapi.entities.CurrencyEntity;
 import br.edu.atitus.currencyapi.repositories.CurrencyRepository;
+import br.edu.atitus.currencyapi.services.CurrencyService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
